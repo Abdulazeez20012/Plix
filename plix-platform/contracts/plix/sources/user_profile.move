@@ -1,10 +1,10 @@
 module plix::user_profile {
     use std::string::String;
-    use sui::object::{Self, UID};
+    use sui::object::UID;
     use sui::transfer;
-    use sui::tx_context::{Self, TxContext};
+    use sui::tx_context::TxContext;
 
-    struct UserProfile has key {
+    public struct UserProfile has key {
         id: UID,
         name: String,
         bio: String,

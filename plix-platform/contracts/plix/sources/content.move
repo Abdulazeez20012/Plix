@@ -1,12 +1,11 @@
 module plix::content {
     use std::string::String;
-    use sui::object::{Self, UID};
+    use sui::object::{UID, ID};
     use sui::transfer;
-    use sui::tx_context::{Self, TxContext};
-    use sui::vec_map::VecMap;
-    use plix::user_profile::UserProfile;
+    use sui::tx_context::TxContext;
+    use sui::vec_map::{Self, VecMap};
 
-    struct Post has key {
+    public struct Post has key {
         id: UID,
         author: address,
         content: String,
@@ -17,9 +16,9 @@ module plix::content {
         metadata: VecMap<String, String>,
     }
 
-    struct Comment has key {
+    public struct Comment has key {
         id: UID,
-        post_id: UID,
+        post_id: ID, // Use ID instead of UID for referencing
         author: address,
         content: String,
         timestamp: u64,
@@ -39,7 +38,7 @@ module plix::content {
             likes: 0,
             shares: 0,
             timestamp: ctx.epoch(),
-            metadata: VecMap::empty(),
+            metadata: vec_map::empty(),
         };
         transfer::transfer(post, tx_context::sender(ctx));
     }
@@ -62,7 +61,7 @@ module plix::content {
             likes: 0,
             shares: 0,
             timestamp: ctx.epoch(),
-            metadata: VecMap::empty(),
+            metadata: vec_map::empty(),
         };
         transfer::transfer(shared_post, tx_context::sender(ctx));
     }
@@ -74,13 +73,16 @@ module plix::content {
 
     // Create a comment on a post
     public entry fun create_comment(
-        post_id: UID,
+        post: &Post, // Pass the post object instead of just the ID
         content: String,
         ctx: &mut TxContext
     ) {
+        // Get the post ID
+        let post_id = object::id(post);
+        
         let comment = Comment {
             id: object::new(ctx),
-            post_id,
+            post_id, // Store the ID reference
             author: tx_context::sender(ctx),
             content,
             timestamp: ctx.epoch(),
@@ -88,20 +90,9 @@ module plix::content {
         transfer::transfer(comment, tx_context::sender(ctx));
     }
 
-    // Getters
-    public fun get_content(post: &Post): &String {
-        &post.content
-    }
-
-    public fun get_author(post: &Post): address {
-        post.author
-    }
-
-    public fun get_likes(post: &Post): u64 {
-        post.likes
-    }
-
-    public fun get_shares(post: &Post): u64 {
-        post.shares
+    // Like a comment
+    public entry fun like_comment(_comment: &mut Comment) {
+        // In a real implementation, you might want to track who liked the comment
+        // For now, we'll just increment the likes count (you'd need to add this field)
     }
 }

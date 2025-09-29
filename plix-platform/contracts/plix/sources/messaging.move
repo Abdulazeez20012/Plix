@@ -1,11 +1,11 @@
 module plix::messaging {
     use std::string::String;
-    use sui::object::{Self, UID};
+    use sui::object::{UID, ID};
     use sui::transfer;
-    use sui::tx_context::{Self, TxContext};
-    use sui::vec_set::VecSet;
+    use sui::tx_context::TxContext;
+    use sui::vec_set::{Self, VecSet};
 
-    struct Message has key {
+    public struct Message has key {
         id: UID,
         sender: address,
         recipient: address,
@@ -14,10 +14,10 @@ module plix::messaging {
         is_read: bool,
     }
 
-    struct Conversation has key {
+    public struct Conversation has key {
         id: UID,
         participants: VecSet<address>,
-        messages: vector<UID>, // References to Message objects
+        messages: vector<ID>, // References to Message objects using ID instead of UID
         created_at: u64,
     }
 
@@ -47,8 +47,8 @@ module plix::messaging {
         participants: vector<address>,
         ctx: &mut TxContext
     ) {
-        let mut_participants = VecSet::empty();
-        let i = 0;
+        let mut mut_participants = vec_set::empty();
+        let mut i = 0;
         let len = vector::length(&participants);
         
         while (i < len) {
@@ -72,8 +72,10 @@ module plix::messaging {
     // Add a message to a conversation
     public entry fun add_message_to_conversation(
         conversation: &mut Conversation,
-        message_id: UID,
+        message: &Message,
     ) {
+        // Convert UID to ID which has copy ability
+        let message_id = object::id(message);
         conversation.messages.push_back(message_id);
     }
 
