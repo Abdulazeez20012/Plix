@@ -1,6 +1,6 @@
 module plix::user_profile {
     use std::string::String;
-    use sui::object::UID;
+    use sui::object::{Self, UID};
     use sui::transfer;
     use sui::tx_context::TxContext;
 
@@ -45,6 +45,36 @@ module plix::user_profile {
         profile.profile_picture_url = profile_picture_url;
     }
 
+    // Update follower count
+    public entry fun update_followers_count(
+        profile: &mut UserProfile,
+        count: u64,
+    ) {
+        profile.followers_count = count;
+    }
+
+    // Update following count
+    public entry fun update_following_count(
+        profile: &mut UserProfile,
+        count: u64,
+    ) {
+        profile.following_count = count;
+    }
+
+    // Delete a user profile
+    public entry fun delete_profile(profile: UserProfile) {
+        let UserProfile {
+            id,
+            name: _,
+            bio: _,
+            profile_picture_url: _,
+            followers_count: _,
+            following_count: _,
+            created_at: _,
+        } = profile;
+        object::delete(id);
+    }
+
     // Getters for profile information
     public fun get_name(profile: &UserProfile): &String {
         &profile.name
@@ -64,5 +94,9 @@ module plix::user_profile {
 
     public fun get_following_count(profile: &UserProfile): u64 {
         profile.following_count
+    }
+
+    public fun get_created_at(profile: &UserProfile): u64 {
+        profile.created_at
     }
 }
