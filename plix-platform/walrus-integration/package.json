@@ -1,0 +1,21 @@
+{
+  "name": "@plix/walrus-integration",
+  "version": "1.0.0",
+  "description": "Walrus integration for Plix platform",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node examples/test.js"
+  },
+  "keywords": [
+    "walrus",
+    "decentralized-storage",
+    "plix"
+  ],
+  "author": "Plix Team",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.0.0",
+    "axios": "^1.12.2",
+    "dotenv": "^17.2.2"
+  }
+}

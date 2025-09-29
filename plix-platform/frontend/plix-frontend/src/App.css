@@ -1,0 +1,201 @@
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #333;
+  margin-bottom: 30px;
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(45deg, #4CAF50, #45a049);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
+.app-header nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.app-header nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.app-header nav ul li a:hover {
+  background-color: #333;
+}
+
+.app-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+.content-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post-card {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  background-color: #333;
+}
+
+.user-info h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+}
+
+.user-info p {
+  margin: 0;
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.post-content {
+  margin-bottom: 20px;
+}
+
+.post-content p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.post-image {
+  width: 100%;
+  border-radius: 8px;
+  background-color: #333;
+  height: 300px;
+  object-fit: cover;
+}
+
+.post-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.post-actions button {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+}
+
+.post-actions button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.trending-section,
+.entertainment-section {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.trending-section h2,
+.entertainment-section h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+}
+
+.trending-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.trending-section ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #333;
+  color: #4CAF50;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.trending-section ul li:hover {
+  color: #45a049;
+}
+
+.entertainment-item {
+  padding: 15px 0;
+  border-bottom: 1px solid #333;
+}
+
+.entertainment-item:last-child {
+  border-bottom: none;
+}
+
+.entertainment-item h3 {
+  margin: 0 0 5px 0;
+  font-size: 1rem;
+  color: #aaa;
+}
+
+.entertainment-item p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .app-main {
+    grid-template-columns: 1fr;
+  }
+  
+  .app-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .app-header nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
