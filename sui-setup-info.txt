@@ -1,0 +1,26 @@
+SUI WALLET SETUP INFORMATION
+============================
+
+ACTIVE WALLET ADDRESS:
+0xe97cdb302c6248f84d9c04b0e67277ebbd38191fe99084cc23d9f2cb61014e12
+
+AVAILABLE ADDRESSES:
+1. elastic-cymophane: 0x29ecb76a6c4f83d375007195e85d155a183b8e4d578ad50b346616501739ef330a
+2. ecstatic-amber: 0x53a2241a14de2e053cd7944e9134d4798ca5ce885196516b1597b9b0335f6a9f
+3. romantic-prase (ACTIVE): 0xe97cdb302c6248f84d9c04b0e67277ebbd38191fe99084cc23d9f2cb61014e12
+4. wonderful-jet: 0xf663d857a259c4723b6672d4d5dad180d336fb11c47b76a83f0cc1ed98440fee2a
+
+NEXT STEPS:
+1. To get test SUI tokens, join the Sui Discord and use the faucet in the #devnet-faucet channel
+2. Command to request tokens: !faucet 0xe97cdb302c6248f84d9c04b0e67277ebbd38191fe99084cc23d9f2cb61014e12
+3. After deploying smart contracts, update your backend .env file with:
+   - SENDER_PRIVATE_KEY=your_private_key_here
+   - PACKAGE_ID=your_package_id_here
+
+SMART CONTRACT DEPLOYMENT:
+1. Navigate to: c:\Users\DELL USER\Documents\plix\plix-platform\contracts\plix
+2. Build: sui move build
+3. Deploy: sui client publish --gas-budget 100000000
+4. Find the Package ID in the deployment output
+
+Note: You'll need to wait for the rate limit to reset before checking your balance or requesting more tokens.
